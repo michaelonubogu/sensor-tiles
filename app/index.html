@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sensor Tiles - Prototype</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
+    <!-- Web Components Polyfils -->
+    <script src="components/webcomponentsjs/webcomponents.js"></script>
+
+    <!-- Sensor Tile app import -->
+    <link rel="import" href="imports/app-main/main.html">
+
+    <!-- Polymer Core Components -->
+    <link rel="import" href="components/core-drawer-panel/core-drawer-panel.html">
+    <link rel="import" href="components/core-menu/core-menu.html">
+    <link rel="import" href="components/core-item/core-item.html">
+    <link rel="import" href="components/core-header-panel/core-header-panel.html">
+    <link rel="import" href="components/core-toolbar/core-toolbar.html">
+
+    <!-- Polymer Paper Components -->
+    <link rel="import" href="components/paper-tabs/paper-tabs.html">
+
+    <link rel="import" href="imports/sensor-tile/sensor-tile.html">
+
+    <style>
+        html,body {
+            height: 100%;
+            margin: 0;
+            background-color: #E5E5E5;
+            font-family: 'Grand Hotel', sans-serif;
+        }
+        core-header-panel {
+            height: 100%;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        core-toolbar {
+            background: #03a9f4;
+            color: white;
+        }
+
+        core-menu{
+            margin:0 !important;
+        }
+
+        core-item{
+            padding:30px 0px 30px 30px !important;
+            border-bottom: solid 2px #483877;
+        }
+
+        core-item:hover{
+            background: #483877;
+            border-bottom:solid 1px #ffffff;
+            cursor:hand;
+            font-weight:600px;
+        }
+
+        #side-nav{
+            background: #57438F;
+            color:#ffffff;
+        }
+
+        #content-section{
+            background: #CEC9DD;
+        }
+
+        #tabs {
+            width: 100%;
+            margin: 0;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            text-transform: uppercase;
+        }
+        .container {
+            width: 100% !important;
+            margin: 50px auto !important;
+            padding-left:10px;
+        }
+
+        :unresolved {
+            display: flex;
+            justify-content: center;
+            background: rgba(255,255,255,0.5);
+            border: 1px dashed #ccc;
+            border-radius: 5px;
+        }
+        :unresolved:after {
+            padding: 15px;
+            content: 'loading...';
+            color: #ccc;
+        }
+
+        /* drawer is always visible on a wide screen
+        so menu button isn't required */
+        core-drawer-panel:not([narrow]) #navicon {
+            display: none;
+        }
+        @media (min-width: 481px) {
+            #tabs {
+                width: 200px;
+            }
+            .container {
+                width: 400px;
+            }
+        }
+
+        sensor-tile{
+            float:left;
+        }
+    </style>
+
+</head>
+
+<body class="metro" unresolved layout>
+
+    <core-drawer-panel id="drawerPanel">
+        <core-header-panel id="side-nav" mode="seamed" drawer>
+            <core-toolbar id="navheader">
+                <span></span>
+            </core-toolbar>
+            <core-menu>
+                <core-item label="One"></core-item>
+                <core-item label="Two"></core-item>
+            </core-menu>
+        </core-header-panel>
+
+        <core-header-panel id="content-section" mode="waterfall" main>
+            <core-toolbar>
+                <paper-icon-button id="navicon" icon="menu"></paper-icon-button>
+                <paper-tabs id="tabs" selected="all" self-end>
+                    <paper-tab name="all">
+                        <i class="fa fa-home toolbar-font-placement"></i>&nbsp; Home
+                    </paper-tab>
+                    <paper-tab name="favorites">
+                        <i class="fa fa-rss-square toolbar-font-placement"></i>&nbsp; Sensors
+                    </paper-tab>
+                </paper-tabs>
+            </core-toolbar>
+
+            <div class="container" horizontal layout wrap>
+                <sensor-tile class="sensor-icon">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span class="name">Store</span>
+                </sensor-tile>
+                <sensor-tile class="sensor-icon">
+                    <i class="fa fa-group"></i>
+                    <span class="name">Users</span>
+                </sensor-tile>
+                <sensor-tile class="sensor-icon">
+                    <i class="fa fa-cog"></i>
+                    <span class="name">Settings</span>
+                </sensor-tile>
+                <sensor-tile class="sensor-icon">
+                    <i class="fa fa-pie-chart"></i>
+                    <span class="name">Metrics</span>
+                </sensor-tile>
+                <sensor-tile class="sensor-icon">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span class="name">Store</span>
+                </sensor-tile>
+                <sensor-tile class="sensor-icon">
+                    <i class="fa fa-group"></i>
+                    <span class="name">Users</span>
+                </sensor-tile>
+                <sensor-tile class="sensor-icon">
+                    <i class="fa fa-cog"></i>
+                    <span class="name">Settings</span>
+                </sensor-tile>
+                <sensor-tile class="sensor-icon">
+                    <i class="fa fa-pie-chart"></i>
+                    <span class="name">Metrics</span>
+                </sensor-tile>
+                <sensor-tile class="sensor-icon">
+                    <i class="fa fa-cog"></i>
+                    <span class="name">Settings</span>
+                </sensor-tile>
+                <sensor-tile class="sensor-icon">
+                    <i class="fa fa-pie-chart"></i>
+                    <span class="name">Metrics</span>
+                </sensor-tile>
+            </div>
+
+        </core-header-panel>-->
+
+    </core-drawer-panel>
+
+    <script>
+        var tabs = document.querySelector('paper-tabs');
+        var list = document.querySelector('post-list');
+
+        document.addEventListener('polymer-ready', function() {
+            var navicon = document.getElementById('navicon');
+            var drawerPanel = document.getElementById('drawerPanel');
+            navicon.addEventListener('click', function() {
+                drawerPanel.togglePanel();
+            });
+        });
+        /*tabs.addEventListener('core-select', function() {
+            list.show = tabs.selected;
+        });*/
+    </script>
+</body>
+
+</html>
