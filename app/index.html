@@ -20,63 +20,52 @@
     <!-- Polymer Paper Components -->
     <link rel="import" href="components/paper-tabs/paper-tabs.html">
 
-    <link rel="import" href="imports/sensor-tile/sensor-tile.html">
-
     <style>
         html,body {
             height: 100%;
             margin: 0;
-            background-color: #E5E5E5;
+            background-color: #e5e5e5;
             font-family: 'Grand Hotel', sans-serif;
         }
-        core-header-panel {
-            height: 100%;
-            overflow: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        core-toolbar {
-            background: #03a9f4;
-            color: white;
+
+        core-toolbar{
+            background:#EF6C00;
+            color: #fff;
         }
 
         core-menu{
-            margin:0 !important;
+            margin: 0 auto;
+            color:#6E6E6E;
+            /*border-bottom:solid 1px #E3E3E3;*/
+            border-top:solid 1px #E6E6E6;
         }
 
-        core-item{
-            padding:30px 0px 30px 30px !important;
-            border-bottom: solid 2px #483877;
+        core-menu paper-item{
+            margin:10px 5px;
         }
 
-        core-item:hover{
-            background: #483877;
-            border-bottom:solid 1px #ffffff;
-            cursor:hand;
-            font-weight:600px;
+        paper-item core-icon{
+            margin-right:7px;
+        }
+
+        paper-item a{
+            text-decoration:none !important;
+            color:#6E6E6E;
+        }
+
+        #sensor_grid{
+            padding:3.6% 0 3.6% 0;
+            padding-left:3.6%;
         }
 
         #side-nav{
-            background: #57438F;
-            color:#ffffff;
+            background:#FAFAFA;
         }
 
-        #content-section{
-            background: #CEC9DD;
-        }
-
-        #tabs {
-            width: 100%;
-            margin: 0;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            text-transform: uppercase;
-        }
-        .container {
-            width: 100% !important;
-            margin: 50px auto !important;
-            padding-left:10px;
+        #side-nav core-toolbar{
+            background:#EFEFEF;
+            color:#6E6E6E;
+            border-bottom:solid 1px #E3E3E3;
         }
 
         :unresolved {
@@ -97,110 +86,117 @@
         core-drawer-panel:not([narrow]) #navicon {
             display: none;
         }
-        @media (min-width: 481px) {
-            #tabs {
-                width: 200px;
-            }
-            .container {
-                width: 400px;
-            }
-        }
-
-        sensor-tile{
-            float:left;
-        }
     </style>
 
 </head>
 
-<body class="metro" unresolved layout>
+<body unresolved>
+<!-- Scafolding Area -->
+<core-drawer-panel id="drawer" forceNarrow>
+    <core-header-panel drawer  id="side-nav" mode="seamed">
+        <core-toolbar>
+            <core-icon icon="face"></core-icon>
+            <span>Michael Onubogu</span>
+        </core-toolbar>
 
-    <core-drawer-panel id="drawerPanel">
-        <core-header-panel id="side-nav" mode="seamed" drawer>
-            <core-toolbar id="navheader">
-                <span></span>
-            </core-toolbar>
-            <core-menu>
-                <core-item label="One"></core-item>
-                <core-item label="Two"></core-item>
-            </core-menu>
-        </core-header-panel>
+        <core-menu selectedAttribute="">
+            <paper-item noink>
+                <core-icon icon="home"></core-icon>
+                <a href="#one">Hub</a>
+                <paper-ripple fit></paper-ripple>
+            </paper-item>
+            <paper-item noink>
+                <core-icon icon="view-module"></core-icon>
+                <a href="#one">Sensors</a>
+                <paper-ripple fit></paper-ripple>
+            </paper-item>
+            <paper-item noink>
+                <core-icon icon="editor:insert-chart"></core-icon>
+                <a href="#one">Stats</a>
+                <paper-ripple fit></paper-ripple>
+            </paper-item>
+            <paper-item noink>
+                <core-icon icon="shopping-cart"></core-icon>
+                <a href="#one">Store</a>
+                <paper-ripple fit></paper-ripple>
+            </paper-item>
+        </core-menu>
+        <core-menu>
+            <paper-item noink>
+                <core-icon icon="settings"></core-icon>
+                <a href="#one">Settings</a>
+                <paper-ripple fit></paper-ripple>
+            </paper-item>
+            <paper-item noink>
+                <core-icon icon="info"></core-icon>
+                <a href="#one">About</a>
+                <paper-ripple fit></paper-ripple>
+            </paper-item>
+        </core-menu>
+    </core-header-panel>
 
-        <core-header-panel id="content-section" mode="waterfall" main>
-            <core-toolbar>
-                <paper-icon-button id="navicon" icon="menu"></paper-icon-button>
-                <paper-tabs id="tabs" selected="all" self-end>
-                    <paper-tab name="all">
-                        <i class="fa fa-home toolbar-font-placement"></i>&nbsp; Home
-                    </paper-tab>
-                    <paper-tab name="favorites">
-                        <i class="fa fa-rss-square toolbar-font-placement"></i>&nbsp; Sensors
-                    </paper-tab>
-                </paper-tabs>
-            </core-toolbar>
+    <core-header-panel id="content-section" mode="standard" main>
+        <core-toolbar class="medium-tall">
+            <core-icon-button icon="menu" core-drawer-toggle id="side-nav-toggle"></core-icon-button>
+            <span flex>Cannelloni</span>
+            <paper-icon-button id="refresh_button" icon="refresh"></paper-icon-button>
+            <paper-icon-button id="morebutton" icon="more-vert"></paper-icon-button>
+        </core-toolbar>
 
-            <div class="container" horizontal layout wrap>
-                <sensor-tile class="sensor-icon">
-                    <i class="fa fa-shopping-cart"></i>
-                    <span class="name">Store</span>
-                </sensor-tile>
-                <sensor-tile class="sensor-icon">
-                    <i class="fa fa-group"></i>
-                    <span class="name">Users</span>
-                </sensor-tile>
-                <sensor-tile class="sensor-icon">
-                    <i class="fa fa-cog"></i>
-                    <span class="name">Settings</span>
-                </sensor-tile>
-                <sensor-tile class="sensor-icon">
-                    <i class="fa fa-pie-chart"></i>
-                    <span class="name">Metrics</span>
-                </sensor-tile>
-                <sensor-tile class="sensor-icon">
-                    <i class="fa fa-shopping-cart"></i>
-                    <span class="name">Store</span>
-                </sensor-tile>
-                <sensor-tile class="sensor-icon">
-                    <i class="fa fa-group"></i>
-                    <span class="name">Users</span>
-                </sensor-tile>
-                <sensor-tile class="sensor-icon">
-                    <i class="fa fa-cog"></i>
-                    <span class="name">Settings</span>
-                </sensor-tile>
-                <sensor-tile class="sensor-icon">
-                    <i class="fa fa-pie-chart"></i>
-                    <span class="name">Metrics</span>
-                </sensor-tile>
-                <sensor-tile class="sensor-icon">
-                    <i class="fa fa-cog"></i>
-                    <span class="name">Settings</span>
-                </sensor-tile>
-                <sensor-tile class="sensor-icon">
-                    <i class="fa fa-pie-chart"></i>
-                    <span class="name">Metrics</span>
-                </sensor-tile>
-            </div>
+        <div fit>
+            <core-animated-pages  selected="0" transitions="slide-from-right">
+                <section id="sensor_grid" center-justified>
+                    <section class="card"></section>
+                    <section class="card"></section>
+                    <section class="card double"></section>
+                    <section class="card"></section>
+                    <section class="card"></section>
+                    <section class="card double"></section>
+                    <section class="card"></section>
+                    <section class="card"></section>
+                    <section class="card double"></section>
+                    <section class="card"></section>
+                    <section class="card"></section>
+                    <section class="card double"></section>
+                    <section class="card"></section>
+                    <section class="card"></section>
+                    <section class="card double"></section>
+                    <section class="card"></section>
+                    <section class="card"></section>
+                    <!--<section class="card half"></section>
+                    <section class="card half"></section>
+                    <section class="card"></section>
+                    <section class="card"></section>
+                    <section class="card half"></section>
+                    <section class="card half"></section>
+                    <section class="card"></section>
+                    <section class="card half"></section>
+                    <section class="card"></section>
+                    <section class="card"></section>-->
+                </section>
+            </core-animated-pages>
+        </div>
+    </core-header-panel>
 
-        </core-header-panel>-->
+</core-drawer-panel>
 
-    </core-drawer-panel>
-
-    <script>
-        var tabs = document.querySelector('paper-tabs');
-        var list = document.querySelector('post-list');
-
-        document.addEventListener('polymer-ready', function() {
-            var navicon = document.getElementById('navicon');
-            var drawerPanel = document.getElementById('drawerPanel');
-            navicon.addEventListener('click', function() {
-                drawerPanel.togglePanel();
-            });
+<script>
+    document.addEventListener('polymer-ready', function() {
+        var $container = $('#sensor_grid').packery({
+            itemSelector: '.card',
+            gutter: 8
         });
-        /*tabs.addEventListener('core-select', function() {
-            list.show = tabs.selected;
-        });*/
-    </script>
+
+        // get item elements, jQuery-ify them
+        var $itemElems = $container.find('.card');
+
+        // make item elements draggable
+        $itemElems.draggable();
+
+        // bind Draggable events to Packery
+        $container.packery( 'bindUIDraggableEvents', $itemElems );
+    });
+</script>
 </body>
 
 </html>
