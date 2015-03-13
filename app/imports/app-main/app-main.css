@@ -2,9 +2,8 @@
 
 * { font-family: 'Roboto', sans-serif; line-height:1.2; vertical-align:middle; }
 
-input, .card {
+/*input, .card {
     position:relative;
-    /*z-index:2;*/
 }
 input {
     display:block;
@@ -56,7 +55,7 @@ input:focus + header {
     height: 386px;
 }
 
-/*.card.double-vertical {
+.card.double-vertical {
     height: 250px;
 }
 .card.triple {
@@ -64,23 +63,23 @@ input:focus + header {
 }
 .card.triple-vertical {
     height: 380px;
-}*/
+}
 .card.quadro {
     width: 510px;
 }
 .card.quadro-vertical {
     height: 510px;
-}
+}*/
 
-.card.ui-draggable-dragging,
-.card.is-positioning-post-drag {
+sensor-tile.ui-draggable-dragging,
+sensor-tile.is-positioning-post-drag {
     z-index: 2;
     bottom: 0;
-    box-shadow:0 6px 10px 0 rgba(0, 0, 0, 0.3);
+    box-shadow:0 6px 15px 0 rgba(0, 0, 0, 0.3);
     cursor:move;
 }
 
-.divider-outside-bottom {
+/*.divider-outside-bottom {
     position:relative;
 }
 .divider-outside-bottom:before {
@@ -101,7 +100,7 @@ input:focus + header {
     }
 }
 
-/*.card:after {
+.card:after {
     position:absolute;
     font-size:.9rem;
     top:1.5rem;

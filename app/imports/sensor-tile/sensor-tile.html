@@ -1,0 +1,132 @@
+<!-- ===================================================================================================
+    Name:          sensor-tile
+    Author:        @michaelonubogu
+    Description:   Displays sensor-tile data (dish data)
+    ====================================================================================================-->
+<link rel="import" href="../../components/polymer/polymer.html">
+
+<!-- Sensor Tile app import (Contains all required imports for polymer)-->
+<link rel="import" href="../../imports/app-main/main.html">
+
+<polymer-element name="sensor-tile" attributes="size resize draggable url loading">
+    <template>
+        <style>
+            @import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,700,500italic,900,700italic,900italic);
+            * { font-family: 'Roboto', sans-serif; line-height:1.2; vertical-align:middle; }
+
+            :host{
+                padding:1.5rem;
+                box-shadow:0 1px 2px #aaa;
+                background:white;
+                border-radius:3px;
+            }
+        </style>
+
+        <template if="{{size == 'half'}}">
+            <style>
+                :host{
+                    width: 55px !important;
+                    height: 55px !important;
+                }
+            </style>
+        </template>
+
+        <template if="{{size == 'regular'}}">
+            <style>
+
+                :host{
+                    width: 168px !important;
+                    height: 165px  !important;
+                }
+            </style>
+        </template>
+
+        <template if="{{size == 'double'}}">
+            <style>
+                :host{
+                    width: 391px !important;
+                    height: 386px !important;
+                }
+            </style>
+        </template>
+
+        <template if="{{size == 'triple'}}">
+            <style>
+
+                :host{
+                    width: 380px; !important;
+                    height: 376px  !important;
+                }
+            </style>
+        </template>
+
+        <template if="{{size == 'quadro'}}">
+            <style>
+
+                :host{
+                    width: 510px; !important;
+                    height: 506px  !important;
+                }
+            </style>
+        </template>
+
+        <section class="card">
+            <content></content>
+        </section>
+    </template>
+
+
+    <script>
+        Polymer('sensor-tile', {
+            /**
+             * The URL target of the external content to load. URL must point to a file with a DOM element.
+             *
+             * @attribute url
+             * @type string
+             * @default ''
+             */
+            url: '',
+
+            /**
+             * The loading message displayed before the tile is rendered
+             *
+             * @attribute loading
+             * @type string
+             * @default 'Loading...'
+             */
+            loading: 'Loading...',
+
+            /**
+             * Specifies whether the size of the tile on load.
+             * sizes: ['half', 'regular', 'double', 'triple', 'quadro']
+             *
+             * @attribute size
+             * @type string
+             * @default 'regular'
+             */
+            size: 'regular',
+
+            /**
+             * If true, makes the tile resizable
+             *
+             * @attribute resize
+             * @type boolean
+             * @default false
+             */
+            resize: false,
+
+            /**
+             * If true, makes the tile draggable on the screen
+             *
+             * @attribute auto
+             * @type boolean
+             * @default true
+             */
+            draggable: true,
+
+            ready: function(){
+                //alert(this.size);
+            }
+        });
+    </script>
+</polymer-element>

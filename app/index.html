@@ -20,6 +20,10 @@
     <!-- Polymer Paper Components -->
     <link rel="import" href="components/paper-tabs/paper-tabs.html">
 
+    <!-- Sensor-tiles Custom Elements-->
+    <link rel="import" href="imports/sensor-grid/sensor-grid.html">
+    <link rel="import" href="imports/sensor-tile/sensor-tile.html">
+
     <style>
         html,body {
             height: 100%;
@@ -145,34 +149,23 @@
 
         <div fit>
             <core-animated-pages  selected="0" transitions="slide-from-right">
+                <!--<sensor-grid>
+                    <sensor-tile size="half" resize="true" draggable="true"></sensor-tile>
+                    <sensor-tile size="double" resize="true" draggable="true"></sensor-tile>
+                    <sensor-tile size="regular" resize="true" draggable="true"></sensor-tile>
+                    <sensor-tile size="double" resize="true" draggable="true"></sensor-tile>
+                    <sensor-tile size="half" resize="true" draggable="true"></sensor-tile>
+                    <sensor-tile size="half" resize="true" draggable="true"></sensor-tile>
+                    <sensor-tile size="half" resize="true" draggable="true"></sensor-tile>
+                </sensor-grid>-->
                 <section id="sensor_grid" center-justified>
-                    <section class="card"></section>
-                    <section class="card"></section>
-                    <section class="card double"></section>
-                    <section class="card"></section>
-                    <section class="card"></section>
-                    <section class="card double"></section>
-                    <section class="card"></section>
-                    <section class="card"></section>
-                    <section class="card double"></section>
-                    <section class="card"></section>
-                    <section class="card"></section>
-                    <section class="card double"></section>
-                    <section class="card"></section>
-                    <section class="card"></section>
-                    <section class="card double"></section>
-                    <section class="card"></section>
-                    <section class="card"></section>
-                    <!--<section class="card half"></section>
-                    <section class="card half"></section>
-                    <section class="card"></section>
-                    <section class="card"></section>
-                    <section class="card half"></section>
-                    <section class="card half"></section>
-                    <section class="card"></section>
-                    <section class="card half"></section>
-                    <section class="card"></section>
-                    <section class="card"></section>-->
+                    <sensor-tile size="half" resize="true" draggable="true"></sensor-tile>
+                    <sensor-tile size="double" resize="true" draggable="true"></sensor-tile>
+                    <sensor-tile size="regular" resize="true" draggable="true"></sensor-tile>
+                    <sensor-tile size="double" resize="true" draggable="true"></sensor-tile>
+                    <sensor-tile size="half" resize="true" draggable="true"></sensor-tile>
+                    <sensor-tile size="half" resize="true" draggable="true"></sensor-tile>
+                    <sensor-tile size="half" resize="true" draggable="true"></sensor-tile>
                 </section>
             </core-animated-pages>
         </div>
@@ -183,12 +176,12 @@
 <script>
     document.addEventListener('polymer-ready', function() {
         var $container = $('#sensor_grid').packery({
-            itemSelector: '.card',
+            itemSelector: 'sensor-tile',
             gutter: 8
         });
 
         // get item elements, jQuery-ify them
-        var $itemElems = $container.find('.card');
+        var $itemElems = $container.find('sensor-tile');
 
         // make item elements draggable
         $itemElems.draggable();

@@ -1,0 +1,84 @@
+<!-- ===================================================================================================
+    Name:          sensor-grid
+    Author:        @michaelonubogu
+    Description:   Container for sensor-tiles. Will only display sensor-tile elements***
+                    (so one could have DOM elements other than sensor-tiles that could do other stuff
+                    without interfering with the sensor-grid. I LOVE YOU POLYMER!!! I LOVE YOU GOOGLE :D
+    ====================================================================================================-->
+<link rel="import" href="../../components/polymer/polymer.html">
+
+<!-- Sensor Tile app import (Contains all required imports for polymer)-->
+<link rel="import" href="../../imports/app-main/main.html">
+
+<polymer-element name="sensor-grid" attributes="gutter rowHeight columnWidth backgroundColor">
+
+    <template>
+        <style>
+            :host{
+                padding:3.6% 0 3.6% 0; /*Hack; will definitely change*/
+                padding-left:3.6%; /*Hack; will definitely change*/
+                width:1000px !important;
+            }
+        </style>
+
+        <content select="sensor-tile"></content>
+    </template>
+
+    <script>
+        Polymer('sensor-grid', {
+            /**
+             * Width of vertical piping for sensor grid
+             *
+             * @attribute columnWidth
+             * @type number
+             * @default 8
+             */
+            columnWidth: 8,
+
+            /**
+             * Width of horizontal piping for sensor grid
+             *
+             * @attribute rowHeight
+             * @type number
+             * @default 8
+             */
+            rowHeight: 8,
+
+            /**
+             * The background color of the the sensor grid
+             *
+             * @attribute backgroundColor
+             * @type string
+             * @default 'transparent'
+             */
+            backgroundColor: 'transparent',
+
+            /**
+             * The width of both the vertical & horizontal piping of the grid
+             *
+             * @attribute gutter
+             * @type number
+             * @default 8
+             */
+            gutter: 8,
+
+
+            ready: function(){
+                //alert(this.size);
+                var $container = $(this).packery({
+                    itemSelector: 'sensor-tile',
+                    gutter: this.gutter
+                });
+
+                // get item elements, jQuery-ify them
+                var $itemElems = $container.find('sensor-tile');
+
+                // make item elements draggable
+                $itemElems.draggable();
+
+                // bind Draggable events to Packery
+                $container.packery( 'bindUIDraggableEvents', $itemElems );
+            }
+        });
+    </script>
+</polymer-element>
